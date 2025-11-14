@@ -1,0 +1,127 @@
+.mw-5{
+    max-width:5%;
+}
+.l-bg-cherry {
+    background: linear-gradient(to right, #493240, #f09) !important;
+    color: #fff;
+}
+
+.l-bg-info {
+    background: linear-gradient(to right, #52d0f7, rgb(54, 146, 189)) !important;
+    color: #fff;
+}
+
+.l-bg-blue-dark {
+    background: linear-gradient(to right, #373b44, #4286f4) !important;
+    color: #fff;
+}
+
+.l-bg-green-dark {
+    background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+    color: #fff;
+}
+
+.l-bg-orange-dark {
+    background: linear-gradient(to right, #a86008, #ffba56) !important;
+    color: #fff;
+}
+
+.card .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
+    font-size: 110px !important;
+}
+
+.card .card-statistic-3 .card-icon {
+    text-align: center;
+    line-height: 50px;
+    margin-left: 15px;
+    color: #000;
+    position: absolute;
+    right: -5px;
+    top: 20px;
+    opacity: 0.1;
+}
+
+.l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
+}
+
+.l-bg-green {
+    background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+    color: #fff;
+}
+
+.l-bg-orange {
+    background: linear-gradient(to right, #f9900e, #ffba56) !important;
+    color: #fff;
+}
+
+.l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
+}
+
+.table{
+    font-size: 13px;
+}
+
+
+.morris-hover {
+    position:absolute;
+    z-index:1000;
+  }
+
+  .morris-hover.morris-default-style {     border-radius:10px;
+    padding:6px;
+    color:#666;
+    background:rgba(255, 255, 255, 0.8);
+    border:solid 2px rgba(230, 230, 230, 0.8);
+    font-family:sans-serif;
+    font-size:12px;
+    text-align:center;
+  }
+
+  .morris-hover.morris-default-style .morris-hover-row-label {
+    font-weight:bold;
+    margin:0.25em 0;
+  }
+
+  .morris-hover.morris-default-style .morris-hover-point {
+    white-space:nowrap;
+    margin:0.1em 0;
+  }
+
+  svg { width: 100%; }
+
+  select option {
+    font-size: 13px;
+}
+
+.wrapper1, .wrapper2 {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+ }
+.wrapper1 { height: 10px;
+    margin-top: 15px; }
+.wrapper2 {}
+.div1 { height: 10px; }
+.div2 { overflow: none; }
+
+.wrapper1::-webkit-scrollbar-track, .wrapper2::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.wrapper1::-webkit-scrollbar, .wrapper2::-webkit-scrollbar
+{
+	height: 10px;
+	background-color: #F5F5F5;
+}
+
+.wrapper1::-webkit-scrollbar-thumb, .wrapper2::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+	border: 2px solid #555555;
+}
