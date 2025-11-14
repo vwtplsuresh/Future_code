@@ -41,9 +41,15 @@ class RolesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $role = Role::find($id);
+        $permissions = Permission::all();
+
+        $permissionGroups = $permissions->groupBy(function ($p) {
+            return explode('.', $p->name)[0] ?? 'general';
+        });
+        return view('admin.roles.edit', compact('role', 'permissions', 'permissionGroups'));
     }
 
     /**
@@ -51,15 +57,27 @@ class RolesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $role = Role::find($id);
+        return view('admin.roles.edit', ["role" => $role]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'permissions' => 'nullable|array'
+        ]);
+
+        $role->name = $data['name'];
+        $role->save();
+
+        // sync permissions
+        $role->syncPermissions($data['permissions'] ?? []);
+
+        return redirect()->route('admin.roles.index')->withStatus('Role updated.');
     }
 
     /**
@@ -67,6 +85,7 @@ class RolesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Role::destroy($id);
+        return redirect()->route('admin.roles.index')->withStatus('Role deleted successfully !');
     }
 }

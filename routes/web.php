@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UnitController as AdminUnitsController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ZoneController as AdminZonesController;
 use App\Http\Controllers\Admin\LockController as AdminLockController;
+use App\Http\Controllers\Admin\PermissionController as AdminPermissionController;
 // Operator Controller
 use App\Http\Controllers\Operator\IndexController as OperatorIndexController;
 use App\Http\Controllers\Operator\LocationController as OperatorLocationController;
@@ -53,6 +54,7 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::resource('/zones', AdminZonesController::class);
     Route::resource('/locations', AdminLocationController::class);
     Route::resource('/units', AdminUnitsController::class);
+    Route::resource('/permissions', AdminPermissionController::class);
     Route::get('/settings', [AdminSettingsController::class, 'index'])->name('settings.index');
     Route::get('/lock', [AdminLockController::class, 'index'])->name('lock.index');
     Route::post('/lock-update', [AdminLockController::class, 'PhaseAndZoneLock'])->name('lock.update');
