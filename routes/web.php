@@ -102,4 +102,5 @@ Route::get('/daily-totalizer-delete', [CronController::class, 'dailyTotalizerFlo
 
 Route::get('/panel-lock', [CronController::class, 'panellock']);
 Route::get('/panel-auto-lock-unlock', [CronController::class, 'panelAutoLockUnlock']);
+Route::get('/send-over-limit-mail', [CronController::class, 'sendOverLimitReport']);
 require __DIR__.'/auth.php';

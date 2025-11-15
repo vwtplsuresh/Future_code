@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\SendOverLimitReportJob;
 
 
 class CronController extends Controller
@@ -168,7 +169,7 @@ public function panelAutoLockUnlock()
     // Only run exactly on 00, 15, 30, 45 minute mark — and only when second = 0
     if (!in_array($minute % 5, [0]) || $second !== 0) {
         log::info("⏭️ Skipping panel auto lock/unlock at minute {$minute}");
-        return; 
+        return;
     }
 
 
@@ -230,7 +231,39 @@ public function panelAutoLockUnlock()
     return 'Panel lock/unlock cron executed successfully.';
 }
 
+public function sendOverLimitReport()
+    {
+        $units = Unit::all();
+        
+        foreach ($units as $unit) {
 
+            $todayData = DailyTotailzer::where('unit_id', $unit->id)
+                ->whereDate('created_at', today())
+                ->first();
+
+            if (!$todayData) {
+
+                continue;
+            }
+
+            if ($todayData->totalizer > $unit->today_limit) {
+
+                $overLimitData[] = [
+                'unit_id'     => $unit->id,
+                'unit_name'   => $unit->title,
+                'today_limit' => $unit->today_limit,
+                'total_flow'  => $todayData->totalizer,
+                'over_flow'   => $todayData->totalizer - $unit->today_limit,
+            ];
+               
+            }
+        }
+       
+if(count($overLimitData) > 0){
+         SendOverLimitReportJob::dispatch($overLimitData);
+}
+        return "Controller Cron Executed Successfully";
+    }
 
 
 }
